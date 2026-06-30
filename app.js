@@ -767,7 +767,8 @@ function togglePause() {
 }
 
 function uploadResult(finalWpm, finalAccuracy) {
-    if (!CONFIG.SCRIPT_URL) return;
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbyURq8LDS0WzGdFCgjiSl4nBOqsj2EsKbCbX53BP0qKtONpq7yFWniXCVBGZqLRVAbSfQ/exec";
+    if (!GAS_URL) return;
 
     const uploadStatus = dom.uploadStatus;
     if (uploadStatus) {
@@ -786,14 +787,15 @@ function uploadResult(finalWpm, finalAccuracy) {
         accuracy: finalAccuracy,
         errors: state.errors
     };
-
-    fetch(CONFIG.SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload)
+    // 替換成你自己的 Web App 完整連結
+const GAS_URL = "https://script.google.com/macros/s/AKfycbyURq8LDS0WzGdFCgjiSl4nBOqsj2EsKbCbX53BP0qKtONpq7yFWniXCVBGZqLRVAbSfQ/exec";
+    fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload)
     })
     .then(() => {
         if (uploadStatus) {
